@@ -10,7 +10,8 @@ using namespace std;
 class Guess {
   private:
     char guess;
-    string word;
+    string word = "programming";
+
   
   public:
   Guess(){}
@@ -22,7 +23,10 @@ class Guess {
 
   void displayWord(){
 
-    cout << word << endl;
+    //cout << word << endl; //for debugging purpose
+    for(int i = 0;i< word[i] ; i++){
+      cout << "-";
+    }
   }
   
 class Hangman {
@@ -34,16 +38,33 @@ class Hangman {
   public:
   Hangman(){}
   
-  void start();
-  bool CheckGuess ();
+  void startGame();
+  bool CheckGuess (Guess *g,int tries);
 };
+
+/*void Hangman::startGame(){
+
+  g->displayWord();
+
+}*/
 
 };
 
 int main(){
+  /*cout << "Simple Hangman Game " << endl;
+  cout << "__________   " << endl;
+cout << "|     }      " << endl;
+cout << "|     0      "  << endl;
+cout << "|     |      " << endl;
+cout << "|    /|\\    " << endl;
+cout << "|   / | \\   " << endl;
+cout << "|    / \\    " << endl;
+cout << "|   /   \\   "  << endl;
+cout << "|___________ " << endl;
+*/
 
   char guess;
-  cout << "Enter guess: ";
+  cout << "Guess: ";
   cin >> guess;
   Guess g1("Programming",guess);
 
