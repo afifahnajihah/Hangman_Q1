@@ -10,7 +10,7 @@ using namespace std;
 class Guess {
   private:
     char guess;
-    string word = "programming";
+    string word;
     string m_word; //m_word -> MysteryWord
 
   
@@ -39,17 +39,20 @@ void Guess :: displayWord(){
     cout << endl;
   }
 
+  //void Gu
+
 bool Guess :: findLetter(char guess){
 
     for(int i = 0;i<word.length();i++){
 
       if (word[i] == guess){
         m_word[i] = guess;
+        //displayWord();
         return true;
-        displayWord();
+        
       }
 
-      else if (word[i] != guess){
+      else {
         return false;
         //displayWord();
       }
@@ -60,14 +63,14 @@ class Hangman {
 
   private:
   int tries;
-  Guess *g;
+  Guess *gS;
 
   public:
   Hangman(){}
   
   void startGame(Guess *gs);
 
-  bool CheckGuess (Guess g,int tries);
+  bool CheckGuess (Guess gS,int tries);
 };
 
 void Hangman::startGame(Guess *gs){
@@ -76,15 +79,17 @@ void Hangman::startGame(Guess *gs){
 
 }
 
-bool Hangman::CheckGuess (Guess g,int tries){
+bool Hangman::CheckGuess (Guess gS,int tries){
 
-  char guess = g.getGuess();
-  if(g.findLetter(guess)== true){
-    g.displayWord();
+  char g = gS.getGuess();
+  if(gS.findLetter(g)== 1){
+    cout << endl << "Correct!";
+    gS.displayWord();
   } 
 
   else{
-    g.displayWord();
+    cout << endl << "Incorrect!";
+    gS.displayWord();
     tries--;
   }
 
