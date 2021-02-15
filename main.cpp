@@ -27,8 +27,10 @@ class Guess {
     for(int i = 0;i< word[i] ; i++){
       cout << "-";
     }
+    cout << endl;
   }
-  
+};
+
 class Hangman {
 
   private:
@@ -38,17 +40,17 @@ class Hangman {
   public:
   Hangman(){}
   
-  void startGame();
-  bool CheckGuess (Guess *g,int tries);
+  void startGame(Guess *gs);
+
+  bool CheckGuess (Guess g,int tries);
 };
 
-/*void Hangman::startGame(){
+void Hangman::startGame(Guess *gs){
 
-  g->displayWord();
+  gs->displayWord();
 
-}*/
+}
 
-};
 
 int main(){
   /*cout << "Simple Hangman Game " << endl;
@@ -63,14 +65,25 @@ cout << "|   /   \\   "  << endl;
 cout << "|___________ " << endl;
 */
 
-  char guess;
+//set variables used in this game
+int misses;
+char guess;
+bool CorrectGuess = false;
+
+//create object for Hangman
+Hangman game;
+Guess g;
+
+//while(misses >= 0){
+  
+  //Display information related to the word
   cout << "Guess: ";
   cin >> guess;
-  Guess g1("Programming",guess);
-
-  g1.displayWord();
+  
+  game.startGame(&g);
   
 
+//}
   return 1;
   //system("pause");
 }
