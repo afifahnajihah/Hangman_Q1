@@ -16,17 +16,17 @@ class Guess {
   
   public:
   Guess(){}
-  Guess(string a_word,char a_guess){
+  Guess(string a_word){
 
     word = a_word;
-    guess = a_guess;
+    //guess = a_guess;
   }
   
   char getGuess() { return guess;}
   bool findLetter (char guess);
   
-
   void displayWord();
+  void updateWord();
 };
 
 void Guess :: displayWord(){
@@ -39,25 +39,19 @@ void Guess :: displayWord(){
     cout << endl;
   }
 
-  //void Gu
 
 bool Guess :: findLetter(char guess){
-
-    for(int i = 0;i<word.length();i++){
-
-      if (word[i] == guess){
-        m_word[i] = guess;
-        //displayWord();
-        return true;
-        
+  
+  for(int i =0;i<word.length();i++){
+        if (guess == word[i]){
+          return true;
+          m_word[i] = guess;
+          displayWord();
+          }
       }
-
-      else {
-        return false;
-        //displayWord();
-      }
-    }
-}
+      
+      return false;
+};
 
 class Hangman {
 
@@ -67,33 +61,35 @@ class Hangman {
 
   public:
   Hangman(){}
-  
-  void startGame(Guess *gs);
+  int getTries (){ return tries;}
+  void startGame(Guess gs);
 
-  bool CheckGuess (Guess gS,int tries);
+  void CheckGuess (char letter, Guess gS,int tries);
+  void updateWord();
+
 };
 
-void Hangman::startGame(Guess *gs){
+void Hangman::startGame(Guess gs){
 
-  gs->displayWord();
+  gs.displayWord();
 
 }
 
-bool Hangman::CheckGuess (Guess gS,int tries){
+void Hangman::CheckGuess (char letter,Guess gS,int tries){
 
-  char g = gS.getGuess();
-  if(gS.findLetter(g)== 1){
+  letter = gS.getGuess();
+
+  if(gS.findLetter(letter)== true){
+    
     cout << endl << "Correct!";
     gS.displayWord();
   } 
 
   else{
-    cout << endl << "Incorrect!";
+    cout << endl << "Incorrect!" << endl;
     gS.displayWord();
     tries--;
   }
-
-
 
 }
 
@@ -112,23 +108,25 @@ int main(){
     cout << "|___________ " << endl;
     */
 
+  //create object for Hangman
+    Hangman game;
+    Guess g ("programming");
+
     //set variables used in this game
     int misses = 10;
-    char guess;
-    bool CorrectGuess = false;
+    char letter = g.getGuess();
+    //bool CorrectGuess = false;
 
-    //create object for Hangman
-    Hangman game;
-    Guess g;
+    
 
     //while(misses >= 0){
-      
+      game.startGame(g);
       //Display information related to the word
       cout << "Guess: ";
-      cin >> guess;
+      cin >> letter;
       
-      game.startGame(&g);
-      game.CheckGuess(g, misses);
+      
+      game.CheckGuess(letter,g, misses);
       
       
 
